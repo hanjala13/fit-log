@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/shared/Navbar";
+import { Oswald } from "next/font/google";
+
+const oswald = Oswald({ 
+  subsets: ['latin'], 
+  weight: ['500', '600', '700'], 
+  variable: '--font-oswald',
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,9 +29,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className={`${oswald.variable} min-h-full flex flex-col bg-[#0B0B0F] text-white`}>
+
+        <Navbar />
+
+        <div>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
