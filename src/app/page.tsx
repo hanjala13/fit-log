@@ -1,7 +1,12 @@
-import Banner from '@/components/homepage/Banner';
+import Banner from '@/components/Banner';
+import { getWorkouts } from '@/utlis/api';
 import React from 'react';
 
-const page = () => {
+const HomePage = async() => {
+  const workouts = await getWorkouts();
+
+  console.log(workouts)
+
   return (
     <div>
       <Banner />
@@ -9,4 +14,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default HomePage;
