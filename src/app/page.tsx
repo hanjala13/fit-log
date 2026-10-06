@@ -1,4 +1,5 @@
 import Banner from '@/components/Banner';
+import LibrarySection from '@/components/LibrarySection';
 import { getWorkouts } from '@/utlis/api';
 import React from 'react';
 
@@ -10,6 +11,7 @@ const HomePage = async() => {
   return (
     <div>
       <Banner />
+      <LibrarySection workouts={workouts}/>
     </div>
   );
 };
