@@ -4,9 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import logo from '@/assets/logo.png';
+import { usePlan } from '@/context/PlanContext';
 
 const Navbar = () => {
     const pathname = usePathname();
+
+    const { plan, saved } = usePlan();
 
     const isWorkoutPage =
         pathname === '/' || pathname.startsWith('/workout');
@@ -15,11 +18,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar min-h-14 border-b border-white/10 bg-[#0B0B0F] px-4 lg:px-8">
-
-            {/* Left: Logo */}
             <div className="navbar-start">
-
-                {/* Mobile Menu */}
                 <div className="dropdown">
                     <div
                         tabIndex={0}
@@ -50,14 +49,12 @@ const Navbar = () => {
                         <li>
                             <Link href="/">Workouts</Link>
                         </li>
-
                         <li>
                             <Link href="/my-plan">My Plan</Link>
                         </li>
                     </ul>
                 </div>
 
-                {/* Logo */}
                 <Link
                     href="/"
                     className="flex cursor-pointer items-center gap-2"
@@ -74,11 +71,8 @@ const Navbar = () => {
                 </Link>
             </div>
 
-            {/* Center: Navigation */}
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex items-center gap-2">
-
-                    {/* Workouts */}
                     <li>
                         <Link
                             href="/"
@@ -91,7 +85,6 @@ const Navbar = () => {
                         </Link>
                     </li>
 
-                    {/* My Plan */}
                     <li>
                         <Link
                             href="/my-plan"
@@ -103,13 +96,10 @@ const Navbar = () => {
                             My Plan
                         </Link>
                     </li>
-
                 </ul>
             </div>
 
-            {/* Right: Plan / Saved */}
             <div className="navbar-end gap-4 text-[11px] text-gray-300">
-
                 <Link
                     href="/my-plan"
                     className="flex cursor-pointer items-center gap-1.5 hover:text-white"
@@ -117,7 +107,7 @@ const Navbar = () => {
                     Plan
 
                     <span className="grid h-4 min-w-4 place-items-center rounded-full bg-[#C6FF00] px-1 text-[10px] font-bold text-black">
-                        0
+                        {plan.length}
                     </span>
                 </Link>
 
@@ -128,10 +118,9 @@ const Navbar = () => {
                     Saved
 
                     <span className="grid h-4 min-w-4 place-items-center rounded-full bg-white/10 px-1 text-[10px] font-bold text-white">
-                        0
+                        {saved.length}
                     </span>
                 </Link>
-
             </div>
         </div>
     );

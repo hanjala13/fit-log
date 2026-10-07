@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { Oswald } from "next/font/google";
 import { PlanProvider } from "@/context/PlanContext";
 
 const oswald = Oswald({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
   variable: '--font-oswald',
 });
 
