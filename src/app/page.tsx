@@ -1,6 +1,6 @@
 import Banner from '@/components/Banner';
 import LibrarySection from '@/components/LibrarySection';
-import { getWorkouts } from '@/utlis/api';
+import { getWorkouts } from '@/utils/api';
 import React from 'react';
 
 const HomePage = async() => {

@@ -1,20 +1,20 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import banner from '@/assets/banner.png';
 
-
 const Banner = () => {
-
     return (
         <section className="mx-3 my-4 sm:mx-4 sm:my-6 lg:mx-8">
             <div className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/10 bg-[#0F0F14] px-5 py-8 text-center sm:px-8 sm:py-10 md:grid-cols-2 md:gap-4 md:text-left lg:px-12 lg:py-14">
+
                 {/* Left: text */}
                 <div className="order-2 md:order-1">
                     <h4 className="text-[10px] font-bold tracking-[0.2em] text-[#C6FF00] sm:text-xs">
                         WORKOUT LIBRARY
                     </h4>
 
-                    <h2 className={`font-oswald mt-3 text-3xl font-bold uppercase leading-[1.05] text-white sm:text-4xl lg:text-5xl`}>
+                    <h2 className="font-oswald mt-3 text-3xl font-bold uppercase leading-[1.05] text-white sm:text-4xl lg:text-5xl">
                         Train with intent. Log <br className="hidden md:block" /> every set.
                     </h2>
 
@@ -23,9 +23,28 @@ const Banner = () => {
                         into today&apos;s plan, and watch the week&apos;s work add up.
                     </p>
 
-                    <button className="cursor-pointer mt-5 w-full rounded-sm bg-[#C6FF00] px-5 py-3 text-[10px] font-bold tracking-wider text-black transition hover:brightness-110 sm:w-auto sm:text-xs lg:mt-6">
+                    {/* Browse Workouts */}
+                    <Link
+                        href="#library"
+                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-[#C6FF00] px-5 py-3 text-[10px] font-bold tracking-wider text-black transition hover:brightness-110 sm:w-auto sm:text-xs lg:mt-6"
+                    >
                         BROWSE WORKOUTS
-                    </button>
+
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            className="h-3.5 w-3.5"
+                            strokeWidth="2"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 12h14m-6-6 6 6-6 6"
+                            />
+                        </svg>
+                    </Link>
                 </div>
 
                 {/* Right: image */}
@@ -37,6 +56,7 @@ const Banner = () => {
                         className="h-auto w-36 object-contain sm:w-44 md:w-48 lg:w-64"
                     />
                 </div>
+
             </div>
         </section>
     );
