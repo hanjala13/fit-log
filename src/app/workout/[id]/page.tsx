@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getWorkoutById } from '@/utils/api';
+import WorkoutDetails from '@/components/WorkoutDetails';
 
 interface WorkoutDetailsPageProps {
     params: Promise<{ id: string }>;
@@ -147,17 +148,7 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
 
                         {/* Buttons */}
                         <div className="mt-4 flex flex-wrap gap-2">
-
-                            <button className="flex cursor-pointer items-center gap-1.5 rounded-sm bg-[#C6FF00] px-3 py-2 text-[9px] font-bold text-black transition hover:brightness-110">
-                                <span>▣</span>
-                                Add to today&apos;s plan
-                            </button>
-
-                            <button className="flex cursor-pointer items-center gap-1.5 rounded-sm border border-white/15 bg-transparent px-3 py-2 text-[9px] font-medium text-gray-300 transition hover:border-white/30 hover:text-white">
-                                <span>□</span>
-                                Save for later
-                            </button>
-
+                            <WorkoutDetails workout={workout}/>
                         </div>
 
                     </div>

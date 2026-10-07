@@ -3,10 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Oswald } from "next/font/google";
+import { PlanProvider } from "@/context/PlanContext";
 
-const oswald = Oswald({ 
-  subsets: ['latin'], 
-  weight: ['500', '600', '700'], 
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
   variable: '--font-oswald',
 });
 
@@ -34,11 +35,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className={`${oswald.variable} min-h-full flex flex-col bg-[#0B0B0F] text-white`}>
 
-        <Navbar />
+        <PlanProvider>
 
-        <div>
-          {children}
-        </div>
+          <Navbar />
+          <div>
+            {children}
+          </div>
+
+        </PlanProvider>
+
       </body>
     </html>
   );
