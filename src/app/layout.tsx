@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { PlanProvider } from "@/context/PlanContext";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -34,12 +36,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className={`${oswald.variable} min-h-full flex flex-col bg-[#0B0B0F] text-white`}>
 
         <PlanProvider>
-
           <Navbar />
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
 
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            pauseOnHover
+            theme="dark"
+          />
         </PlanProvider>
 
       </body>

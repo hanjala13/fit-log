@@ -6,8 +6,12 @@ import type { IWorkout } from '@/types';
 interface PlanContextType {
     plan: IWorkout[];
     saved: IWorkout[];
+    completed: number[];
+
     addToPlan: (workout: IWorkout) => void;
     removeFromPlan: (workoutId: number) => void;
+    markAsDone: (workoutId: number) => void;
+
     saveWorkout: (workout: IWorkout) => void;
     removeFromSaved: (workoutId: number) => void;
 }
@@ -21,6 +25,7 @@ export const PlanProvider = ({
 }) => {
     const [plan, setPlan] = useState<IWorkout[]>([]);
     const [saved, setSaved] = useState<IWorkout[]>([]);
+    const [completed, setCompleted] = useState<number[]>([]);
 
     const addToPlan = (workout: IWorkout) => {
         setPlan((currentPlan) => {
@@ -30,12 +35,30 @@ export const PlanProvider = ({
 
             return [...currentPlan, workout];
         });
+
+        setCompleted((currentCompleted) =>
+            currentCompleted.filter((id) => id !== workout.id)
+        );
     };
 
     const removeFromPlan = (workoutId: number) => {
         setPlan((currentPlan) =>
             currentPlan.filter((item) => item.id !== workoutId)
         );
+
+        setCompleted((currentCompleted) =>
+            currentCompleted.filter((id) => id !== workoutId)
+        );
+    };
+
+    const markAsDone = (workoutId: number) => {
+        setCompleted((currentCompleted) => {
+            if (currentCompleted.includes(workoutId)) {
+                return currentCompleted;
+            }
+
+            return [...currentCompleted, workoutId];
+        });
     };
 
     const saveWorkout = (workout: IWorkout) => {
@@ -59,8 +82,10 @@ export const PlanProvider = ({
             value={{
                 plan,
                 saved,
+                completed,
                 addToPlan,
                 removeFromPlan,
+                markAsDone,
                 saveWorkout,
                 removeFromSaved,
             }}
