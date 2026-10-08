@@ -17,13 +17,17 @@ const Navbar = () => {
     const isPlanPage = pathname.startsWith('/my-plan');
 
     return (
-        <div className="navbar min-h-14 border-b border-white/10 bg-[#0B0B0F] px-4 lg:px-8">
+        <div className="navbar relative min-h-14 border-b border-white/10 bg-[#0B0B0F] px-3 sm:px-4 lg:px-8">
+
+            {/* Mobile Menu + Desktop Logo */}
             <div className="navbar-start">
-                <div className="dropdown">
+
+                {/* Mobile Menu */}
+                <div className="dropdown lg:hidden">
                     <div
                         tabIndex={0}
                         role="button"
-                        className="btn btn-ghost btn-sm text-white lg:hidden"
+                        className="btn btn-ghost btn-sm px-1 text-white"
                     >
                         <svg
                             aria-label="Menu"
@@ -49,15 +53,17 @@ const Navbar = () => {
                         <li>
                             <Link href="/">Workouts</Link>
                         </li>
+
                         <li>
                             <Link href="/my-plan">My Plan</Link>
                         </li>
                     </ul>
                 </div>
 
+                {/* Desktop Logo */}
                 <Link
                     href="/"
-                    className="flex cursor-pointer items-center gap-2"
+                    className="hidden cursor-pointer items-center gap-2 lg:flex"
                 >
                     <Image
                         src={logo}
@@ -71,6 +77,23 @@ const Navbar = () => {
                 </Link>
             </div>
 
+            {/* Mobile Center Logo */}
+            <Link
+                href="/"
+                className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 lg:hidden"
+            >
+                <Image
+                    src={logo}
+                    alt="FitLog logo"
+                    className="h-5 w-5 object-contain"
+                />
+
+                <span className="font-oswald text-sm font-extrabold tracking-wide text-white">
+                    FITLOG
+                </span>
+            </Link>
+
+            {/* Desktop Navigation */}
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex items-center gap-2">
                     <li>
@@ -99,25 +122,27 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            <div className="navbar-end gap-4 text-[11px] text-gray-300">
+            {/* Plan + Saved */}
+            <div className="navbar-end gap-2 text-[9px] text-gray-300 sm:gap-4 sm:text-[11px]">
+
                 <Link
                     href="/my-plan"
-                    className="flex cursor-pointer items-center gap-1.5 hover:text-white"
+                    className="flex cursor-pointer items-center gap-1 hover:text-white sm:gap-1.5"
                 >
                     Plan
 
-                    <span className="grid h-4 min-w-4 place-items-center rounded-full bg-[#C6FF00] px-1 text-[10px] font-bold text-black">
+                    <span className="grid h-4 min-w-4 place-items-center rounded-full bg-[#C6FF00] px-1 text-[9px] font-bold text-black sm:text-[10px]">
                         {plan.length}
                     </span>
                 </Link>
 
                 <Link
                     href="/my-plan"
-                    className="flex cursor-pointer items-center gap-1.5 hover:text-white"
+                    className="flex cursor-pointer items-center gap-1 hover:text-white sm:gap-1.5"
                 >
                     Saved
 
-                    <span className="grid h-4 min-w-4 place-items-center rounded-full bg-white/10 px-1 text-[10px] font-bold text-white">
+                    <span className="grid h-4 min-w-4 place-items-center rounded-full bg-white/10 px-1 text-[9px] font-bold text-white sm:text-[10px]">
                         {saved.length}
                     </span>
                 </Link>
