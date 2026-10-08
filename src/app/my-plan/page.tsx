@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { usePlan } from '@/context/PlanContext';
 import PlanCard from '@/components/PlanCard';
 
@@ -79,6 +80,7 @@ const MyPlanPage = () => {
                         <p className="text-[8px] uppercase tracking-wider text-gray-500 sm:text-[10px]">
                             Exercises
                         </p>
+
                         <p className="mt-1 font-oswald text-xl font-bold text-white sm:text-2xl">
                             {currentItems.length}
                         </p>
@@ -88,6 +90,7 @@ const MyPlanPage = () => {
                         <p className="text-[8px] uppercase tracking-wider text-gray-500 sm:text-[10px]">
                             Minutes
                         </p>
+
                         <p className="mt-1 font-oswald text-xl font-bold text-white sm:text-2xl">
                             {totalMinutes}
                         </p>
@@ -97,6 +100,7 @@ const MyPlanPage = () => {
                         <p className="text-[8px] uppercase tracking-wider text-gray-500 sm:text-[10px]">
                             Calories
                         </p>
+
                         <p className="mt-1 font-oswald text-xl font-bold text-white sm:text-2xl">
                             {totalCalories}
                         </p>
@@ -112,8 +116,8 @@ const MyPlanPage = () => {
                             type="button"
                             onClick={() => setActiveTab('plan')}
                             className={`relative pb-3 text-[10px] font-bold uppercase tracking-wide transition sm:text-xs ${activeTab === 'plan'
-                                    ? 'text-[#C6FF00]'
-                                    : 'text-gray-500 hover:text-white'
+                                ? 'text-[#C6FF00]'
+                                : 'text-gray-500 hover:text-white'
                                 }`}
                         >
                             Today's Plan
@@ -127,8 +131,8 @@ const MyPlanPage = () => {
                             type="button"
                             onClick={() => setActiveTab('saved')}
                             className={`relative pb-3 text-[10px] font-bold uppercase tracking-wide transition sm:text-xs ${activeTab === 'saved'
-                                    ? 'text-[#C6FF00]'
-                                    : 'text-gray-500 hover:text-white'
+                                ? 'text-[#C6FF00]'
+                                : 'text-gray-500 hover:text-white'
                                 }`}
                         >
                             Saved
@@ -141,7 +145,10 @@ const MyPlanPage = () => {
 
                     {/* Sort Dropdown */}
                     <div className="relative mb-2 shrink-0">
-                        <label htmlFor="sort-workouts" className="sr-only">
+                        <label
+                            htmlFor="sort-workouts"
+                            className="sr-only"
+                        >
                             Sort By
                         </label>
 
@@ -164,9 +171,11 @@ const MyPlanPage = () => {
                                     <option value="duration">
                                         Duration
                                     </option>
+
                                     <option value="calories">
                                         Calories
                                     </option>
+
                                     <option value="rating">
                                         Rating
                                     </option>
@@ -206,18 +215,21 @@ const MyPlanPage = () => {
                             </div>
                         </div>
                     ) : currentItems.length === 0 ? (
-                        <div className="flex min-h-[180px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#151519] px-4 text-center">
-                            <p className="font-oswald text-sm font-bold uppercase text-white">
-                                {activeTab === 'plan'
-                                    ? 'Your plan is empty'
-                                    : 'No saved workouts'}
+                        <div className="flex min-h-[205px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#0F0F14] px-4 text-center">
+                            <p className="font-oswald text-base font-bold uppercase text-white">
+                                NOTHING HERE YET
                             </p>
 
-                            <p className="mt-1 text-xs text-gray-500">
-                                {activeTab === 'plan'
-                                    ? 'Add workouts from the library to build your plan.'
-                                    : 'Save workouts from the library to find them here.'}
+                            <p className="mt-2 text-xs text-gray-500">
+                                Browse the library and add a lift to get moving.
                             </p>
+
+                            <Link
+                                href="/#library"
+                                className="mt-5 rounded-full bg-[#C6FF00] px-5 py-2.5 text-[10px] font-bold text-black transition hover:brightness-110"
+                            >
+                                Go to workouts
+                            </Link>
                         </div>
                     ) : (
                         <div className="space-y-3">
